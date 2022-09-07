@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script>
+      window.onload = () => {
+        addWaterMark('123')
+      }
+      function addWaterMark (str) {
+        const body = document.getElementById('content')
+        const canvas = document.createElement('canvas')
+
+        body.appendChild(canvas)
+
+        canvas.width = 210
+        canvas.height = 210
+        canvas.style.display = 'block'
+        var cans = canvas.getContext('2d')
+        cans.rotate((-20 * Math.PI) / 180)
+        cans.font = '12px Microsoft JhengHei'
+        cans.fillStyle = 'rgba(17, 17, 17, 0.1)'
+        cans.textAlign = 'left'
+        cans.textBaseline = 'Middle'
+        cans.fillText(str, 30, 105, 200)
+        body.style.backgroundImage =
+          'url(' + canvas.toDataURL('image/png') + ')'
+      }
+    </script>
+  </body>
+</html>
